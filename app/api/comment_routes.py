@@ -20,7 +20,7 @@ def get_all_comments():
     return{"comments":[comment.to_dict() for comment in comments]}
 
 
-@comment_routes.route('')
+@comment_routes.route('', methods=["POST"])
 @login_required
 def create_comment():
     """
@@ -43,3 +43,60 @@ def create_comment():
     else:
         errors = form.errors
         return{"errors":errors},400
+
+
+@comment_routes.route('/<int:comment_id>',methods=["PUT"])
+@login_required
+def edit_comment_by_id(comment_id):
+    """
+    Edit a comment on a post by Id. Only the owner of the comment can edit.
+    """
+
+    data = request.get_json()
+    comment = Comment.query.get(comment_id)
+    if not comment:
+
+            return {
+                "errors":"Comment not found"
+            }
+    if current_user.id != comment.id:
+         return {
+              "errors": "User did not create this comment"
+         }
+
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    form.message.data = data['message']
+    form.userId.data = current_user.id
+    form.postId = comment.postId
+
+    if form.validate():
+         comment.message = data['message']
+         comment.updated_at = datetime.utcnow()
+         db.session.commit()
+         return comment.to_dict(),201
+
+@comment_routes.route('/int:comment_id>', methods=["DELETE"])
+@login_required
+def delete_comment_by_id(comment_id):
+     """
+     Delete a comment by id if the current user is the owner of the comment
+     """
+
+
+     comment = Comment.query.get(comment_id)
+     if not comment:
+          return{
+               "errors":"Comment not found"
+          }
+
+     if current_user.id != comment.userId:
+          return {
+               "errors":"User did not create this comment"
+          }
+
+     db.session.delete(comment)
+     db.session.commit()
+     return{
+          "message":"Comment successfully deleted"
+     }
