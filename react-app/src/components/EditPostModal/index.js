@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createPostThunk } from "../../store/posts";
-export default function CreatePostModal({ user }) {
+import { editPostThunk } from "../../store/posts";
 
+export default function EditPostModal({ post, user }) {
     const dispatch = useDispatch()
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState(post.message)
     const [errors, setErrors] = useState([])
     const { closeModal } = useModal()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         let body = { message }
-        const data = await dispatch(createPostThunk(body))
+        const data = await dispatch(editPostThunk(post.id, body))
 
         if (data && data.errors) {
             setErrors(data.errors.message)
@@ -26,7 +26,7 @@ export default function CreatePostModal({ user }) {
 
     return (
         <div className="modal-container">
-            <h1>Start a post</h1>
+            <h1>Edit your post</h1>
             <div>
                 {`${user.firstname} ${user.lastname}`}
             </div>
@@ -42,7 +42,7 @@ export default function CreatePostModal({ user }) {
 
                     >
                     </textarea>
-                    <button type="submit">Post</button>
+                    <button type="submit">Save Changes</button>
 
 
 

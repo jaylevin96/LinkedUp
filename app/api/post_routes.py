@@ -77,7 +77,6 @@ def delete_post_by_id(post_id):
     """
     Delete a post by id if the current user is the owner of the post. Otherwise returns an error message.
     """
-    data = request.get_json()
     post = Post.query.get(post_id)
     if not post:
         return{

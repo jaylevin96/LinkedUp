@@ -62,8 +62,8 @@ export const createPostThunk = (data) => async dispatch => {
     }
 }
 
-export const editPostThunk = (data) => async dispatch => {
-    const response = await fetch(`/api/posts/${data.id}`, {
+export const editPostThunk = (id, data) => async dispatch => {
+    const response = await fetch(`/api/posts/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -73,6 +73,7 @@ export const editPostThunk = (data) => async dispatch => {
         if (data.errors) {
             return data
         }
+
         dispatch(editPost(data))
 
     }
@@ -101,7 +102,11 @@ export default function reducer(state = initialState, action) {
             return newState
         case EDIT_POST:
             newState[action.data.id] = action.data
+            return newState
 
+        case DELETE_POST:
+            delete newState[action.id]
+            return newState
         default:
             return state;
     }

@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import OpenModalButton from "../OpenModalButton";
+import EditPostModal from '../EditPostModal';
+import DeletePostModal from '../DeletePostModal';
 import { getPostsThunk } from '../../store/posts';
 import "./posts.css"
 export default function Posts() {
@@ -25,6 +28,14 @@ export default function Posts() {
                     {`${post.UserInfo.firstname} ${post.UserInfo.lastname}`}
                     <span className='post-details-created'>{post.createdAt}</span>
                 </div>
+
+                {post.userId === user.id && (
+                    <div>
+                        <OpenModalButton modalComponent={<EditPostModal post={post} user={user} />} buttonText={"Edit"} />
+                        <OpenModalButton modalComponent={<DeletePostModal post={post} user={user} />} buttonText={"Delete"} />
+                    </div>
+                )}
+
                 <div>
                     {post.UserInfo.title}
                 </div>

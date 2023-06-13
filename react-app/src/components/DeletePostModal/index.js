@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createPostThunk } from "../../store/posts";
-export default function CreatePostModal({ user }) {
+import { deletePostThunk } from "../../store/posts";
 
+export default function DeletePostModal({ post, user }) {
     const dispatch = useDispatch()
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState(post.message)
     const [errors, setErrors] = useState([])
     const { closeModal } = useModal()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         let body = { message }
-        const data = await dispatch(createPostThunk(body))
+        const data = await dispatch(deletePostThunk(post.id))
 
         if (data && data.errors) {
             setErrors(data.errors.message)
@@ -26,7 +26,7 @@ export default function CreatePostModal({ user }) {
 
     return (
         <div className="modal-container">
-            <h1>Start a post</h1>
+            <h1>Are you sure you want to delete this post?</h1>
             <div>
                 {`${user.firstname} ${user.lastname}`}
             </div>
@@ -34,15 +34,16 @@ export default function CreatePostModal({ user }) {
                 {user.title}
             </div>
             <div>
-                {errors.length > 0 && (<p className="validation-errors">{errors[0]}</p>)}
+
                 <form onSubmit={handleSubmit}>
                     <textarea placeholder="What do you want to talk about?"
                         value={message}
+                        disabled
                         onChange={(e) => setMessage(e.target.value)}
 
                     >
                     </textarea>
-                    <button type="submit">Post</button>
+                    <button type="submit">Delete post</button>
 
 
 
