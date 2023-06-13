@@ -35,6 +35,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'firstname':self.first_name,
             'lastname':self.last_name,
-            'email': self.email
+            'email': self.email,
+            'title':self.title
         }
     userPosts = db.relationship("Post", back_populates="user")

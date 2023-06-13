@@ -39,7 +39,7 @@ def create_a_post():
         return res.to_dict()
     else:
         errors = form.errors
-        return errors, 400
+        return {"errors":errors}, 400
 
 @post_routes.route('/<int:post_id>',methods=["PUT"])
 @login_required
