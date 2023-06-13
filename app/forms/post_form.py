@@ -14,4 +14,4 @@ def user_id_exists(form, field):
 
 class PostForm(FlaskForm):
     message = StringField("Post message", validators=[DataRequired(),Length(min=1,max=255,message="Post must have at least 1 character and must not exceed 255 characters")])
-    user_id = IntegerField("User Id", validators=[DataRequired(), user_id_exists])
+    userId = IntegerField("User Id", validators=[DataRequired(), user_id_exists])

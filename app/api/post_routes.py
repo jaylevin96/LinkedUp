@@ -4,7 +4,7 @@ from app.forms import LoginForm
 from app.forms import SignUpForm
 from app.forms import PostForm
 from flask_login import current_user, login_user, logout_user, login_required
-
+from datetime import datetime
 
 post_routes = Blueprint('posts',__name__)
 
@@ -27,12 +27,12 @@ def create_a_post():
     """
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    form.user_id.data = current_user.id
+    form.userId.data = current_user.id
 
     if form.validate():
         res = Post(
             message = form.data['message'],
-            user_id = form.data['user_id']
+            userId = form.data['userId']
         )
         db.session.add(res)
         db.session.commit()
@@ -40,3 +40,56 @@ def create_a_post():
     else:
         errors = form.errors
         return errors, 400
+
+@post_routes.route('/<int:post_id>',methods=["PUT"])
+@login_required
+def edit_post_by_id(post_id):
+    """
+    Edit a post by id if the current user is the owner of the post. Otherwise returns an error message.
+    """
+    data = request.get_json()
+    post = Post.query.get(post_id)
+    if not post:
+        return{
+            "errors": "Post not found"
+        }
+
+    if current_user.id != post.userId:
+        return {
+            "errors": "User did not create this post"
+        }
+
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    form.message.data = data['message']
+    form.userId.data = current_user.id
+
+    if form.validate():
+        post.message = data['message']
+        post.updated_at = datetime.utcnow()
+        db.session.commit()
+        return post.to_dict(),201
+
+
+@post_routes.route('/<int:post_id>',methods=["DELETE"])
+@login_required
+def delete_post_by_id(post_id):
+    """
+    Delete a post by id if the current user is the owner of the post. Otherwise returns an error message.
+    """
+    data = request.get_json()
+    post = Post.query.get(post_id)
+    if not post:
+        return{
+            "errors": "Post not found"
+        }
+
+    if current_user.id != post.userId:
+        return {
+            "errors": "User did not create this post"
+        }
+    db.session.delete(post)
+    db.session.commit()
+    return {
+        "message": "Post successfully deleted"
+    }
