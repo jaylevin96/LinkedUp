@@ -29,6 +29,7 @@ export default function Comments({ post, user }) {
                 "postId": post.id
             }
             dispatch(createCommentThunk(post.id, body))
+            setNewComment('')
         }
     };
 

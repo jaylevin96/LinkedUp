@@ -55,8 +55,15 @@ export const createCommentThunk = (id, data) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json()
-        dispatch(createComment(id, data))
+        if (data.errors) {
+            return data
+        }
+        else {
+
+            dispatch(createComment(id, data))
+        }
     }
+
 }
 
 const initialState = {}
@@ -70,7 +77,7 @@ export default function reducer(state = initialState, action) {
             })
             return newState
         case createComment:
-            newState[action.id][comment.id] = comment
+            newState[action.id][action.data.id] = action.data
             return newState
 
 
