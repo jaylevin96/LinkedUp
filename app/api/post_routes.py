@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db, Post
+from app.models import User, db, Post, Comment
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from app.forms import PostForm
@@ -17,6 +17,14 @@ def get_all_posts():
     """
     posts = Post.query.all()
     return {"posts":[post.to_dict() for post in posts]}
+
+
+
+@post_routes.route('/<int:post_id>/comments')
+@login_required
+def get_post_comments(post_id):
+    comments = Comment.query.filter(Comment.postId == post_id).all()
+    return{"comments":[comment.to_dict() for comment in comments]}
 
 
 @post_routes.route('', methods=["POST"])

@@ -39,3 +39,4 @@ class User(db.Model, UserMixin):
             'title':self.title
         }
     userPosts = db.relationship("Post", back_populates="user")
+    userComments = db.relationship("Comment",back_populates="user")
