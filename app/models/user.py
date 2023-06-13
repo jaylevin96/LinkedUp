@@ -10,6 +10,9 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(40),nullable=False)
+    last_name = db.Column(db.String(40),nullable=False)
+    profileImage = db.Column(db.String(255),default="someLinkhere.com")
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -29,5 +32,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
+            'firstname':self.first_name,
+            'lastname':self.last_name,
             'email': self.email
         }
+    userPosts = db.relationship("Post", back_populates="user")
