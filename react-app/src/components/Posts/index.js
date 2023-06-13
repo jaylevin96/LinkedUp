@@ -33,7 +33,8 @@ export default function Posts() {
 
 
 
-                    <div className='post-details-container' key={post.id}>
+                    <div className='post-details-container' key={post.id}
+                        style={showComments[post.id] ? { marginBottom: 0 } : {}}>
                         <div>
                             {`${post.UserInfo.firstname} ${post.UserInfo.lastname}`}
                             <span className='post-details-created'>{post.createdAt}</span>

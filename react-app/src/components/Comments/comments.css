@@ -1,0 +1,11 @@
+.comments-container {
+  margin: auto;
+  width: var(--posts-width);
+}
+
+.comments-details-container {
+  margin: 1.5em 0;
+}
+.comment-details-created {
+  color: var(--timestampColor);
+}
