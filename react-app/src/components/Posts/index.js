@@ -29,12 +29,12 @@ export default function Posts() {
 
             return (
 
-                <>
+                <div key={post.id}>
 
 
 
-                    <div className='post-details-container' key={post.id}
-                        style={showComments[post.id] ? { marginBottom: 0 } : {}}>
+                    <div className='post-details-container'
+                        style={showComments[post.id] ? { marginBottom: 0, borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0 } : {}}>
                         <div className='post-details-header'>
                             <div className='post-details-user'>
                                 <div>
@@ -48,8 +48,8 @@ export default function Posts() {
                             </div>
                             {post.userId === user.id && (
                                 <span className='post-details-options-buttons'>
-                                    <OpenModalButton modalComponent={<EditPostModal post={post} user={user} />} buttonText={<i class="fa-solid fa-pen-to-square"></i>} />
-                                    <OpenModalButton modalComponent={<DeletePostModal post={post} user={user} />} buttonText={<i class="fa-solid fa-trash-can"></i>} />
+                                    <OpenModalButton modalComponent={<EditPostModal post={post} user={user} />} buttonText={<i className="fa-solid fa-pen-to-square"></i>} />
+                                    <OpenModalButton modalComponent={<DeletePostModal post={post} user={user} />} buttonText={<i className="fa-solid fa-trash-can"></i>} />
                                 </span>
                             )}
                         </div>
@@ -86,7 +86,7 @@ export default function Posts() {
 
                     )}
 
-                </>
+                </div>
 
             )
 

@@ -80,7 +80,7 @@ def edit_comment_by_id(comment_id):
          errors = form.errors
          return{"errors:errors"},400
 
-@comment_routes.route('/int:comment_id>', methods=["DELETE"])
+@comment_routes.route('/<int:comment_id>', methods=["DELETE"])
 @login_required
 def delete_comment_by_id(comment_id):
      """

@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import OpenModalButton from "../OpenModalButton";
+import EditCommentModal from '../EditCommentModal';
 import { createCommentThunk, getPostCommentsThunk } from '../../store/comments';
 import "./comments.css"
+import DeleteCommentModal from '../DeleteCommentModal';
+import CommentDetails from './CommentDetails';
 export default function Comments({ post, user }) {
     let dispatch = useDispatch()
+    const commentRefs = useRef([])
     let [newComment, setNewComment] = useState('')
+    const [showCommentOptions, setShowCommentOptions] = useState({})
     let comments = useSelector((state) => state.comments[post.id])
     if (comments) {
         comments = Object.values(comments)
@@ -17,7 +22,10 @@ export default function Comments({ post, user }) {
 
     useEffect(() => {
         dispatch(getPostCommentsThunk(post.id))
+
     }, [])
+
+
 
     if (!comments) {
         return <></>
@@ -34,10 +42,8 @@ export default function Comments({ post, user }) {
     };
 
 
-    console.log(newComment);
-
     return <>
-        <div id="create-comment-container">
+        <div className="create-comment-container">
             <textarea placeholder='Add a comment...'
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
@@ -46,25 +52,10 @@ export default function Comments({ post, user }) {
             ></textarea>
 
         </div>
-        {comments.map(comment => {
-            return (
-                <div className='comments-details-container'>
-                    <div>
-
-                        {`${comment.UserInfo.firstname} ${comment.UserInfo.lastname}`}
-                        <span className='comment-details-created'>{comment.createdAt}</span>
-
-                    </div>
-
-                    {/* {comment.userId === user.id && ()} */}
-                    <div>
-                        {comment.UserInfo.title}
-                    </div>
-                    <div className='comment-details-message'>
-                        {comment.message}
-
-                    </div>
-                </div>)
+        {comments.map((comment, index) => {
+            // const commentRef = useRef()
+            // commentRefs.current[index] = commentRef
+            return <CommentDetails comment={comment} user={user} />
         })}
     </>
 }

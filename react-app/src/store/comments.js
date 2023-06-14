@@ -5,7 +5,7 @@ const DELETE_COMMENT = "comments/DELETE"
 
 const getPostComments = (id, data) => {
     return {
-        type: getPostComments,
+        type: GET_POST_COMMENTS,
         id,
         data
     }
@@ -26,10 +26,11 @@ const editComment = (postId, data) => {
     }
 }
 
-const deleteComment = (id) => {
+const deleteComment = (id, postId) => {
     return {
         type: DELETE_COMMENT,
-        id
+        id,
+        postId
     }
 }
 
@@ -87,22 +88,43 @@ export const editCommentThunk = (id, data) => async dispatch => {
     }
 }
 
+export const deleteCommentThunk = (id, postId) => async dispatch => {
+    const response = await fetch(`/api/comments/${id}`, { method: "DELETE" })
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(deleteComment(id, postId))
+    }
+}
+
 const initialState = {}
 export default function reducer(state = initialState, action) {
     let newState = { ...state }
+
     switch (action.type) {
-        case getPostComments:
+        case GET_POST_COMMENTS:
             newState[action.id] = {}
             action.data.comments.forEach(comment => {
                 newState[action.id][comment.id] = comment
             })
             return newState
-        case createComment:
+        case CREATE_COMMENT:
+            newState[action.id] = { ...newState[action.id] }
+
             newState[action.id][action.data.id] = action.data
+
             return newState
-        case editComment:
+        case EDIT_COMMENT:
+            newState[action.postId] = { ...newState[action.postId] }
+            newState[action.postId][action.data.id] = { ...newState[action.postId][action.data.id] }
             newState[action.postId][action.data.id] = action.data
             return newState
+        case DELETE_COMMENT:
+            newState[action.postId] = { ...newState[action.postId] }
+            newState[action.postId][action.id] = { ...newState[action.postId][action.id] }
+            delete newState[action.postId][action.id]
+
+            return newState
+
 
 
         default:
