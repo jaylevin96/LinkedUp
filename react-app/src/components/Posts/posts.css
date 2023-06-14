@@ -11,6 +11,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+  height: 80px;
+  border-radius: 10px;
+  border: 1pt solid black;
+}
+#create-post-container button {
+  margin: auto;
+  width: 90%;
+  border: 1pt solid gray;
+  border-radius: 25px;
+  height: 35%;
+  background-color: white;
+  font-weight: 600;
+  color: var(--posts-button-color);
+  cursor: pointer;
 }
 #create-post-input {
   width: 90%;
@@ -19,8 +34,20 @@
 }
 
 :root {
-  --posts-width: 500px;
-  --posts-height: 300px;
+  --posts-width: 600px;
+  --posts-height: 320px;
+  --posts-message-height: 175px;
+  --posts-message-width: 90%;
+  --posts-button-color: #888889;
+  --posts-icon-color: #0b6be7;
+}
+.post-details-message {
+  border-top: 1pt solid gray;
+  border-bottom: 1pt solid gray;
+  height: var(--posts-message-height);
+  width: var(--posts-message-width);
+  margin: auto;
+  padding: 0.5em 0;
 }
 
 .post-details-container {
@@ -36,9 +63,49 @@
 .post-details-created {
   color: var(--timestampColor);
 }
-.post-details-message {
-  justify-self: flex-start;
-}
+
 .post-details-header {
   display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  /* width: 75%; */
+  /* margin: 0 auto; */
+}
+.post-details-user {
+  margin-left: 5em;
+}
+.post-details-options-buttons {
+  margin-right: 1em;
+}
+.post-details-options-buttons button {
+  background-color: white;
+  border: 0;
+  cursor: pointer;
+}
+
+/* i {
+  display: inline-block;
+  color: red;
+  background-color: aqua;
+} */
+.post-details-options-buttons button i {
+  width: 25px;
+  height: auto;
+  color: var(--posts-icon-color);
+}
+
+.button-post-comment {
+  width: 100px;
+  background-color: white;
+  color: var(--posts-button-color);
+  border: 0;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+.post-details-footer {
+  display: flex;
+  width: 75%;
+  margin: auto;
+  margin-bottom: 1em;
 }

@@ -77,6 +77,10 @@ export const editPostThunk = (id, data) => async dispatch => {
         dispatch(editPost(data))
 
     }
+    else {
+        const data = await response.json()
+        return data
+    }
 }
 
 export const deletePostThunk = (id) => async dispatch => {

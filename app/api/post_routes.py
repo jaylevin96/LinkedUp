@@ -79,7 +79,7 @@ def edit_post_by_id(post_id):
         return post.to_dict(),201
     else:
          errors = form.errors
-         return{"errors:errors"},400
+         return{"errors":errors},400
 
 
 @post_routes.route('/<int:post_id>',methods=["DELETE"])

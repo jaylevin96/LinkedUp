@@ -36,34 +36,44 @@ export default function Posts() {
                     <div className='post-details-container' key={post.id}
                         style={showComments[post.id] ? { marginBottom: 0 } : {}}>
                         <div className='post-details-header'>
-                            {`${post.UserInfo.firstname} ${post.UserInfo.lastname}`}
-                            <span className='post-details-created'>{post.createdAt}</span>
+                            <div className='post-details-user'>
+                                <div>
+                                    {`${post.UserInfo.firstname} ${post.UserInfo.lastname}`}
+
+                                </div>
+                                <div>
+                                    {post.UserInfo.title}
+                                </div>
+                                <div className='post-details-created'>{post.createdAt}</div>
+                            </div>
                             {post.userId === user.id && (
-                                <span>
-                                    <OpenModalButton modalComponent={<EditPostModal post={post} user={user} />} buttonText={"Edit"} />
-                                    <OpenModalButton modalComponent={<DeletePostModal post={post} user={user} />} buttonText={"Delete"} />
+                                <span className='post-details-options-buttons'>
+                                    <OpenModalButton modalComponent={<EditPostModal post={post} user={user} />} buttonText={<i class="fa-solid fa-pen-to-square"></i>} />
+                                    <OpenModalButton modalComponent={<DeletePostModal post={post} user={user} />} buttonText={<i class="fa-solid fa-trash-can"></i>} />
                                 </span>
                             )}
                         </div>
 
 
 
-                        <div>
-                            {post.UserInfo.title}
-                        </div>
+
+
                         <div className='post-details-message'>
                             {post.message}
 
 
                         </div>
+                        <div className='post-details-footer'>
+                            <button className='button-post-comment'
+                                onClick={() => {
+                                    let newComments = { ...showComments }
+                                    newComments[post.id] = !newComments[post.id]
+                                    setShowComments(newComments)
+                                }}
+                            >Comment</button>
 
-                        <button
-                            onClick={() => {
-                                let newComments = { ...showComments }
-                                newComments[post.id] = !newComments[post.id]
-                                setShowComments(newComments)
-                            }}
-                        >Comments</button>
+                        </div>
+
 
 
 
