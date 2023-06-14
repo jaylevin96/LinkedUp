@@ -22,17 +22,19 @@ export default function Comments({ post, user }) {
     if (!comments) {
         return <></>
     }
-    const handleEnter = (e) => {
+    const handleEnter = async (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             let body = {
                 message: newComment,
                 "postId": post.id
             }
-            dispatch(createCommentThunk(post.id, body))
+            await dispatch(createCommentThunk(post.id, body))
             setNewComment('')
         }
     };
 
+
+    console.log(newComment);
 
     return <>
         <div id="create-comment-container">
