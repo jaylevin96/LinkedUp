@@ -39,3 +39,6 @@
 .post-details-message {
   justify-self: flex-start;
 }
+.post-details-header {
+  display: flex;
+}

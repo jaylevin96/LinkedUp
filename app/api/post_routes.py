@@ -77,6 +77,9 @@ def edit_post_by_id(post_id):
         post.updated_at = datetime.utcnow()
         db.session.commit()
         return post.to_dict(),201
+    else:
+         errors = form.errors
+         return{"errors:errors"},400
 
 
 @post_routes.route('/<int:post_id>',methods=["DELETE"])

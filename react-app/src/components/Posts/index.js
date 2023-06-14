@@ -35,17 +35,18 @@ export default function Posts() {
 
                     <div className='post-details-container' key={post.id}
                         style={showComments[post.id] ? { marginBottom: 0 } : {}}>
-                        <div>
+                        <div className='post-details-header'>
                             {`${post.UserInfo.firstname} ${post.UserInfo.lastname}`}
                             <span className='post-details-created'>{post.createdAt}</span>
+                            {post.userId === user.id && (
+                                <span>
+                                    <OpenModalButton modalComponent={<EditPostModal post={post} user={user} />} buttonText={"Edit"} />
+                                    <OpenModalButton modalComponent={<DeletePostModal post={post} user={user} />} buttonText={"Delete"} />
+                                </span>
+                            )}
                         </div>
 
-                        {post.userId === user.id && (
-                            <div>
-                                <OpenModalButton modalComponent={<EditPostModal post={post} user={user} />} buttonText={"Edit"} />
-                                <OpenModalButton modalComponent={<DeletePostModal post={post} user={user} />} buttonText={"Delete"} />
-                            </div>
-                        )}
+
 
                         <div>
                             {post.UserInfo.title}

@@ -59,12 +59,13 @@ def edit_comment_by_id(comment_id):
             return {
                 "errors":"Comment not found"
             }
-    if current_user.id != comment.id:
+    if current_user.id != comment.userId:
          return {
               "errors": "User did not create this comment"
          }
 
     form = CommentForm()
+    print('got here')
     form['csrf_token'].data = request.cookies['csrf_token']
     form.message.data = data['message']
     form.userId.data = current_user.id
@@ -75,6 +76,9 @@ def edit_comment_by_id(comment_id):
          comment.updated_at = datetime.utcnow()
          db.session.commit()
          return comment.to_dict(),201
+    else:
+         errors = form.errors
+         return{"errors:errors"},400
 
 @comment_routes.route('/int:comment_id>', methods=["DELETE"])
 @login_required

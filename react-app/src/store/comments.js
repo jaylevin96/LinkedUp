@@ -18,9 +18,10 @@ const createComment = (id, data) => {
         data
     }
 }
-const editComment = (data) => {
+const editComment = (postId, data) => {
     return {
         type: EDIT_COMMENT,
+        postId,
         data
     }
 }
@@ -66,6 +67,26 @@ export const createCommentThunk = (id, data) => async dispatch => {
 
 }
 
+export const editCommentThunk = (id, data) => async dispatch => {
+    let postId = data.postId
+    const response = await fetch(`/api/comments/${id}`,
+        {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        })
+
+    if (response.ok) {
+        const data = await response.json()
+        if (data.errors) {
+            return data
+        }
+        else {
+            dispatch(editComment(postId, data))
+        }
+    }
+}
+
 const initialState = {}
 export default function reducer(state = initialState, action) {
     let newState = { ...state }
@@ -78,6 +99,9 @@ export default function reducer(state = initialState, action) {
             return newState
         case createComment:
             newState[action.id][action.data.id] = action.data
+            return newState
+        case editComment:
+            newState[action.postId][action.data.id] = action.data
             return newState
 
 
