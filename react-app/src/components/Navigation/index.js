@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
 	return (
 		<div id="nav-bar-background">
 			<ul id="nav-bar">
-				<li className='nav-bar-list'>
+				<li className='nav-bar-list' >
 					<NavLink exact to="/home" activeStyle={isHome ? { color: "black", borderBottom: "2pt solid black" } : {}}>
 						<>
 							<i className="fa-solid fa-house fa-lg"></i>

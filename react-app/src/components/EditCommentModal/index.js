@@ -30,22 +30,29 @@ export default function EditCommentModal({ comment, user }) {
     return (
         <div className="modal-container">
             <h1>Edit your Comment</h1>
-            <div>
-                {`${user.firstname} ${user.lastname}`}
+            <div className="modal-user-info">
+                <div>
+                    {`${user.firstname} ${user.lastname}`}
+                </div>
+                <div>
+                    {user.title}
+                </div>
+
+
             </div>
-            <div>
-                {user.title}
-            </div>
-            <div>
+            <div className="post-input-container">
                 {errors.length > 0 && (<p className="validation-errors">{errors[0]}</p>)}
-                <form onSubmit={handleSubmit}>
-                    <textarea placeholder="What do you want to say?"
+                <form className="comment-form" onSubmit={handleSubmit}>
+                    <textarea className="comment-input" placeholder="What do you want to say?"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
 
                     >
                     </textarea>
-                    <button type="submit">Save Changes</button>
+                    <div className="post-button-div">
+                        <button type="submit">Save Changes</button>
+
+                    </div>
 
 
 

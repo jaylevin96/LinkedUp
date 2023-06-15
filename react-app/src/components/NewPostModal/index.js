@@ -37,16 +37,19 @@ export default function CreatePostModal({ user }) {
 
             </div>
 
-            <div id="post-input-container">
+            <div className="post-input-container">
                 {errors.length > 0 && (<p className="validation-errors">{errors[0]}</p>)}
-                <form id="new-post-form" onSubmit={handleSubmit}>
-                    <textarea id="new-post-input" placeholder="What do you want to talk about?"
+                <form className="new-post-form" onSubmit={handleSubmit}>
+                    <textarea className="post-input" placeholder="What do you want to talk about?"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
 
                     >
                     </textarea>
-                    <button type="submit">Post</button>
+                    <div className="post-button-div">
+
+                        <button type="submit">Post</button>
+                    </div>
 
 
 

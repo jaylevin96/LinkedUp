@@ -28,23 +28,24 @@ export default function DeleteCommentModal({ comment, user }) {
     return (
         <div className="modal-container">
             <h1>Are you sure you want to delete this comment?</h1>
-            <div>
-                {`${user.firstname} ${user.lastname}`}
-            </div>
-            <div>
-                {user.title}
-            </div>
-            <div>
+            <div className="modal-user-info">
+                <div>
+                    {`${user.firstname} ${user.lastname}`}
+                </div>
+                <div>
+                    {user.title}
+                </div>
 
-                <form onSubmit={handleSubmit}>
-                    <textarea placeholder="What do you want to talk about?"
-                        value={message}
-                        disabled
-                        onChange={(e) => setMessage(e.target.value)}
 
-                    >
-                    </textarea>
-                    <button type="submit">Delete comment</button>
+            </div>
+            <div className="post-input-container">
+
+                <form className="new-post-form" onSubmit={handleSubmit}>
+                    <div className="post-input">{message}</div>
+                    <div>
+                        <button type="submit">Delete comment</button>
+
+                    </div>
 
 
 
