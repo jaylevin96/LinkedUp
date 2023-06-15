@@ -1,7 +1,57 @@
+:root {
+  --button-color: #8e8989;
+}
+
 .profile-dropdown {
   position: absolute;
 }
 
 .hidden {
   display: none;
+}
+#nav-bar {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  list-style-type: none;
+  justify-content: flex-end;
+  gap: 1em;
+  margin-top: 1.5em;
+  background-color: white;
+}
+#nav-bar a {
+  text-decoration: none;
+  color: var(--button-color);
+}
+#nav-bar-background {
+  width: 100%;
+  background-color: white;
+  height: 65px;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+}
+.nav-bar-list a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-option-text {
+  font-size: 11pt;
+  margin-top: 1em;
+}
+
+#profile-button {
+  border: none;
+  background-color: white;
+  color: var(--button-color);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#profile-button i {
 }
