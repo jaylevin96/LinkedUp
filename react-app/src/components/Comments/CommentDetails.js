@@ -42,7 +42,7 @@ export default function CommentDetails({ comment, user }) {
                 </div>
 
 
-                {comment.userId === user.id && (<span className='comment-details-elips'>
+                {comment.userId === user.id && (<span className='details-elips'>
 
                     <i className="fa-solid fa-ellipsis" ref={commentRef}
                         onClick={() => {
@@ -52,13 +52,13 @@ export default function CommentDetails({ comment, user }) {
                     ></i>
 
                     {showCommentOptions && (
-                        <div className='comments-options'>
-                            <span className='comments-options-details'>
+                        <div className='options'>
+                            <span className='options-details'>
                                 <OpenModalButton modalComponent={<EditCommentModal comment={comment} user={user} />} buttonText={
 
                                     <>
                                         <i className="fa-solid fa-pen-to-square"></i>
-                                        <span className='comment-specific-option'>
+                                        <span className='specific-option'>
                                             Edit
                                         </span>
                                     </>
@@ -68,11 +68,11 @@ export default function CommentDetails({ comment, user }) {
 
 
                             </span>
-                            <span className='comments-options-details'>
+                            <span className='options-details'>
                                 <OpenModalButton modalComponent={<DeleteCommentModal comment={comment} user={user} />} buttonText={
                                     <>
                                         <i className="fa-solid fa-trash-can"></i>
-                                        <span className='comment-specific-option'>
+                                        <span className='specific-option'>
                                             Delete
                                         </span>
                                     </>

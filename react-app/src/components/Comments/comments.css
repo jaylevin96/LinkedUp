@@ -53,12 +53,12 @@
   font-size: 9pt;
 }
 
-.comment-details-elips {
+.details-elips {
   color: var(--icon-color);
   cursor: pointer;
   position: relative;
 }
-.comments-options {
+.options {
   position: absolute;
   right: 1em;
   padding: 1em 0;
@@ -73,7 +73,7 @@
   box-shadow: -3px 4px 12px gray;
   border: 0.5pt solid gray;
 }
-.comments-options button {
+.options button {
   border: none;
   cursor: pointer;
   background-color: white;
@@ -84,14 +84,14 @@
   /* padding-left: 1em; */
   padding: 0.5em;
 }
-.comments-options button:hover {
+.options button:hover {
   background-color: var(--comment-background-color);
 }
-.comments-options-details {
+.options-details {
   color: black;
   display: flex;
 }
 
-.comment-specific-option {
+.specific-option {
   margin-left: 2em;
 }

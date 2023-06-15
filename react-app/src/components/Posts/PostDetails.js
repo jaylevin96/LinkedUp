@@ -47,7 +47,7 @@ export default function PostDetails({ post, user }) {
                         </div>
                         <div className='post-details-created'>{post.createdAt}</div>
                     </div>
-                    {post.userId === user.id && (<span className='comment-details-elips'>
+                    {post.userId === user.id && (<span className='details-elips'>
 
                         <i className="fa-solid fa-ellipsis" ref={postRef}
                             onClick={() => {
@@ -57,13 +57,13 @@ export default function PostDetails({ post, user }) {
                         ></i>
 
                         {showPostOptions && (
-                            <div className='comments-options'>
-                                <span className='comments-options-details'>
+                            <div className='options'>
+                                <span className='options-details'>
                                     <OpenModalButton modalComponent={<EditPostModal post={post} user={user} />} buttonText={
 
                                         <>
                                             <i className="fa-solid fa-pen-to-square"></i>
-                                            <span className='comment-specific-option'>
+                                            <span className='specific-option'>
                                                 Edit
                                             </span>
                                         </>
@@ -73,11 +73,11 @@ export default function PostDetails({ post, user }) {
 
 
                                 </span>
-                                <span className='comments-options-details'>
+                                <span className='options-details'>
                                     <OpenModalButton modalComponent={<DeletePostModal post={post} user={user} />} buttonText={
                                         <>
                                             <i className="fa-solid fa-trash-can"></i>
-                                            <span className='comment-specific-option'>
+                                            <span className='specific-option'>
                                                 Delete
                                             </span>
                                         </>
