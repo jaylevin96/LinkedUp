@@ -27,7 +27,7 @@ export default function DeleteCommentModal({ comment, user }) {
 
     return (
         <div className="modal-container">
-            <h1>Are you sure you want to delete this post?</h1>
+            <h1>Are you sure you want to delete this comment?</h1>
             <div>
                 {`${user.firstname} ${user.lastname}`}
             </div>
@@ -44,7 +44,7 @@ export default function DeleteCommentModal({ comment, user }) {
 
                     >
                     </textarea>
-                    <button type="submit">Delete post</button>
+                    <button type="submit">Delete comment</button>
 
 
 

@@ -7,9 +7,10 @@ import DeletePostModal from '../DeletePostModal';
 import { getPostsThunk } from '../../store/posts';
 import "./posts.css"
 import Comments from '../Comments';
+import PostDetails from './PostDetails';
 export default function Posts() {
     let dispatch = useDispatch()
-    const [showComments, setShowComments] = useState({})
+
     let posts = Object.values(useSelector((state) => state.posts))
     let user = useSelector(state => state.session.user)
     posts.sort((a, b) => {
@@ -25,70 +26,9 @@ export default function Posts() {
 
     return <div id="posts-container">
         {posts.map(post => {
-            let id = post.id
 
-            return (
+            return <PostDetails post={post} user={user} key={post.id} />
 
-                <div key={post.id}>
-
-
-
-                    <div className='post-details-container'
-                        style={showComments[post.id] ? { marginBottom: 0, borderBottom: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0 } : {}}>
-                        <div className='post-details-header'>
-                            <div className='post-details-user'>
-                                <div>
-                                    {`${post.UserInfo.firstname} ${post.UserInfo.lastname}`}
-
-                                </div>
-                                <div>
-                                    {post.UserInfo.title}
-                                </div>
-                                <div className='post-details-created'>{post.createdAt}</div>
-                            </div>
-                            {post.userId === user.id && (
-                                <span className='post-details-options-buttons'>
-                                    <OpenModalButton modalComponent={<EditPostModal post={post} user={user} />} buttonText={<i className="fa-solid fa-pen-to-square"></i>} />
-                                    <OpenModalButton modalComponent={<DeletePostModal post={post} user={user} />} buttonText={<i className="fa-solid fa-trash-can"></i>} />
-                                </span>
-                            )}
-                        </div>
-
-
-
-
-
-                        <div className='post-details-message'>
-                            {post.message}
-
-
-                        </div>
-                        <div className='post-details-footer'>
-                            <button className='button-post-comment'
-                                onClick={() => {
-                                    let newComments = { ...showComments }
-                                    newComments[post.id] = !newComments[post.id]
-                                    setShowComments(newComments)
-                                }}
-                            >Comment</button>
-
-                        </div>
-
-
-
-
-
-                    </div>
-                    {showComments[post.id] && (
-                        <div className='comments-container'>
-                            <Comments post={post} user={user} />
-                        </div>
-
-                    )}
-
-                </div>
-
-            )
 
 
 

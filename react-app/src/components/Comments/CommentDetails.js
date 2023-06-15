@@ -14,9 +14,9 @@ export default function CommentDetails({ comment, user }) {
     const commentRef = useRef()
 
     const closeMenu = (e) => {
-        console.log(commentRef.current);
 
-        if (commentRef && !commentRef.current.contains(e.target)) {
+
+        if (commentRef.current && !commentRef.current.contains(e.target)) {
             // console.log(e.target === ref.current);
             setShowCommentOptions(false)
             // console.log("got here");
