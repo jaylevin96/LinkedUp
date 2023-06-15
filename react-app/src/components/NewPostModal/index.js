@@ -26,17 +26,21 @@ export default function CreatePostModal({ user }) {
 
     return (
         <div className="modal-container">
-            <h1>Start a post</h1>
-            <div>
-                {`${user.firstname} ${user.lastname}`}
+            {/* <h1>Start a post</h1> */}
+            <div className="modal-user-info">
+                <div>
+                    {`${user.firstname} ${user.lastname}`}
+                </div>
+                <div>
+                    {user.title}
+                </div>
+
             </div>
-            <div>
-                {user.title}
-            </div>
-            <div>
+
+            <div id="post-input-container">
                 {errors.length > 0 && (<p className="validation-errors">{errors[0]}</p>)}
-                <form onSubmit={handleSubmit}>
-                    <textarea placeholder="What do you want to talk about?"
+                <form id="new-post-form" onSubmit={handleSubmit}>
+                    <textarea id="new-post-input" placeholder="What do you want to talk about?"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
 
