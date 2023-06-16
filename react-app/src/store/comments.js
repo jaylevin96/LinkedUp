@@ -49,12 +49,12 @@ export const getPostCommentsThunk = (id) => async dispatch => {
 }
 
 export const createCommentThunk = (id, data) => async dispatch => {
+
     const response = await fetch(`/api/comments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     })
-
     if (response.ok) {
         const data = await response.json()
         if (data.errors) {
@@ -65,6 +65,14 @@ export const createCommentThunk = (id, data) => async dispatch => {
             dispatch(createComment(id, data))
         }
     }
+    else {
+        const data = await response.json()
+        if (data.errors) return data
+    }
+
+
+
+
 
 }
 

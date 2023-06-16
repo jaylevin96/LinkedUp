@@ -9,8 +9,8 @@ import DeleteCommentModal from '../DeleteCommentModal';
 import CommentDetails from './CommentDetails';
 export default function Comments({ post, user }) {
     let dispatch = useDispatch()
-    const commentRefs = useRef([])
     let [newComment, setNewComment] = useState('')
+    const [errors, setErrors] = useState([])
     const [showCommentOptions, setShowCommentOptions] = useState({})
     let comments = useSelector((state) => state.comments[post.id])
     if (comments) {
@@ -36,7 +36,12 @@ export default function Comments({ post, user }) {
                 message: newComment,
                 "postId": post.id
             }
-            await dispatch(createCommentThunk(post.id, body))
+            let data = await dispatch(createCommentThunk(post.id, body))
+            console.log(data);
+            if (data && data.errors) {
+                setErrors(data.errors.message)
+                return
+            }
             setNewComment('')
         }
     };
@@ -44,6 +49,7 @@ export default function Comments({ post, user }) {
 
     return <>
         <div className="create-comment-container">
+            {errors.length > 0 && (<p className="validation-errors">{errors[0]}</p>)}
             <textarea placeholder='Add a comment...'
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
