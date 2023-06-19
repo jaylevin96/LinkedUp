@@ -21,8 +21,11 @@ textarea {
 }
 .profile-image {
   width: 75px;
+  height: 75px;
   margin-right: 1em;
   border-radius: 100%;
+  overflow: hidden;
   float: left;
-  height: auto;
+  object-fit: cover;
+  /* height: auto; */
 }
