@@ -19,3 +19,10 @@ body {
 textarea {
   resize: none;
 }
+.profile-image {
+  width: 75px;
+  margin-right: 1em;
+  border-radius: 100%;
+  float: left;
+  height: auto;
+}

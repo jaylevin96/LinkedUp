@@ -37,7 +37,7 @@ export default function Comments({ post, user }) {
                 "postId": post.id
             }
             let data = await dispatch(createCommentThunk(post.id, body))
-            console.log(data);
+            // console.log(data);
             if (data && data.errors) {
                 setErrors(data.errors.message)
                 return

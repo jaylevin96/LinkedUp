@@ -10,6 +10,8 @@ function Navigation({ isLoaded }) {
 
 	let isHome = window.location.href.includes('home')
 	let isProfile = window.location.href.includes('profile')
+	if (!isLoaded) return <></>
+
 	return (
 		<div id="nav-bar-background">
 			<ul id="nav-bar">
@@ -23,7 +25,7 @@ function Navigation({ isLoaded }) {
 					</NavLink>
 				</li>
 
-				{isLoaded && (
+				{isLoaded && sessionUser && (
 					<>
 
 						<li className='nav-bar-list'>

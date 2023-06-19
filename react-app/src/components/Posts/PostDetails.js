@@ -39,20 +39,27 @@ export default function PostDetails({ post, user }) {
                 <div className='post-details-header'>
                     <div className='post-details-user'>
                         <div>
-                            {`${post.UserInfo.firstname} ${post.UserInfo.lastname}`}
-
+                            <img className='profile-image' src={post.UserInfo.profileImage}></img>
                         </div>
                         <div>
-                            {post.UserInfo.title}
+
+                            <div>
+                                {`${post.UserInfo.firstname} ${post.UserInfo.lastname}`}
+
+                            </div>
+
+                            <div>
+                                {post.UserInfo.title}
+                            </div>
+                            <div className='post-details-created'>{post.createdAt}</div>
                         </div>
-                        <div className='post-details-created'>{post.createdAt}</div>
                     </div>
                     {post.userId === user.id && (<span className='details-elips'>
 
                         <i className="fa-solid fa-ellipsis" ref={postRef}
                             onClick={() => {
                                 // let newOptions = {...showCommentOptions}
-                                setShowPostOptions(true)
+                                setShowPostOptions(!showPostOptions)
                             }}
                         ></i>
 

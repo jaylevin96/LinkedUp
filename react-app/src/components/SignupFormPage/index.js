@@ -8,29 +8,42 @@ function SignupFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [firstname, setFirstname] = useState('')
+  const [lastname, setLastname] = useState('')
+  const [title, setTitle] = useState('')
   const [password, setPassword] = useState("");
+  const [image, setImage] = useState(null)
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/home" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-        const data = await dispatch(signUp(username, email, password));
-        if (data) {
-          setErrors(data)
-        }
+
+      const formData = new FormData();
+      formData.append('first_name', firstname)
+      formData.append('last_name', lastname)
+      formData.append('title', title)
+      formData.append('email', email)
+      formData.append('password', password)
+      formData.append('profileImage', image)
+
+      const data = await dispatch(signUp(formData));
+      if (data) {
+        setErrors(data)
+      }
     } else {
-        setErrors(['Confirm Password field must be the same as the Password field']);
+      setErrors(['Confirm Password field must be the same as the Password field']);
     }
   };
+  // console.log(image);
 
   return (
     <>
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
@@ -44,13 +57,40 @@ function SignupFormPage() {
           />
         </label>
         <label>
-          Username
+          First name
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={firstname}
+            onChange={(e) => setFirstname(e.target.value)}
             required
           />
+        </label>
+        <label>
+          Last name
+          <input
+            type="text"
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Title
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Profile Picture
+          <input type='file'
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+          ></input>
+
+
         </label>
         <label>
           Password

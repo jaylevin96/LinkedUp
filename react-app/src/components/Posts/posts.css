@@ -73,7 +73,8 @@
   /* margin: 0 auto; */
 }
 .post-details-user {
-  margin-left: 5em;
+  /* margin-left: 5em; */
+  display: flex;
 }
 .post-details-options-buttons {
   margin-right: 1em;

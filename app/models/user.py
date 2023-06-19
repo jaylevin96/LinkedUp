@@ -14,7 +14,6 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(40),nullable=False)
     title = db.Column(db.String(40),nullable=False)
     profileImage = db.Column(db.String(255),default="someLinkhere.com")
-    username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
@@ -32,11 +31,11 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
             'firstname':self.first_name,
             'lastname':self.last_name,
             'email': self.email,
-            'title':self.title
+            'title':self.title,
+            'profileImage': self.profileImage
         }
     userPosts = db.relationship("Post", back_populates="user",cascade="delete-orphan, all")
     userComments = db.relationship("Comment",back_populates="user",cascade="delete-orphan, all")

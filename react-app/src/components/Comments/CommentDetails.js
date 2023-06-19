@@ -47,7 +47,7 @@ export default function CommentDetails({ comment, user }) {
                     <i className="fa-solid fa-ellipsis" ref={commentRef}
                         onClick={() => {
                             // let newOptions = {...showCommentOptions}
-                            setShowCommentOptions(true)
+                            setShowCommentOptions(!showCommentOptions)
                         }}
                     ></i>
 

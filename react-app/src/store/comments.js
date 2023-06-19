@@ -94,6 +94,10 @@ export const editCommentThunk = (id, data) => async dispatch => {
             dispatch(editComment(postId, data))
         }
     }
+    else {
+        const data = await response.json()
+        if (data.errors) return data
+    }
 }
 
 export const deleteCommentThunk = (id, postId) => async dispatch => {
