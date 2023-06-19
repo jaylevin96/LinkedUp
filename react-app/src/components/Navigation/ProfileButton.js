@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, Redirect } from "react-router-dom"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
   const history = useHistory()
@@ -32,10 +33,11 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const handleLogout = (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
-    dispatch(logout());
+    await dispatch(logout());
     history.push('/')
+    // return <Redirect to="/" />
 
   };
 
@@ -52,7 +54,7 @@ function ProfileButton({ user }) {
         {user ? (
           <>
 
-            <li>{user.firstname}</li>
+            <li>Hi, {user.firstname}</li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>

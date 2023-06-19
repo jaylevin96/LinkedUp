@@ -31,6 +31,8 @@ export default function PostDetails({ post, user }) {
 
     }, [])
 
+    if (!user) return <></>
+
     return (
 
         <>

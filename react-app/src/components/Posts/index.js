@@ -17,6 +17,7 @@ export default function Posts() {
         if (a.createdAt > b.createdAt) return -1
     })
     useEffect(() => {
+
         dispatch(getPostsThunk())
     }, [])
 

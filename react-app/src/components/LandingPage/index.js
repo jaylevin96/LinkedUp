@@ -12,11 +12,15 @@ export default function LandingPage() {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    if (sessionUser) return <Redirect to="/home" />;
+    if (sessionUser) {
+
+        return <Redirect to="/home" />;
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password));
         if (data) {
+
             setErrors(data);
         }
     };
@@ -33,8 +37,10 @@ export default function LandingPage() {
                     Linked
                     <span className='nav-bar-logo'>Up</span>
                 </span>
-                <div>
-                    <NavLink to="/signup">Join now</NavLink>
+                <div className="landing-links">
+                    <NavLink to="/signup"
+                        activeStyle={{ color: "gray", borderBottom: "2pt solid black" }}
+                    >Join now</NavLink>
                     <NavLink to="/login"> Sign in</NavLink>
                 </div>
             </div>
@@ -44,7 +50,7 @@ export default function LandingPage() {
                     <form className='landing-login-form' onSubmit={handleSubmit}>
                         <ul>
                             {errors.map((error, idx) => (
-                                <li key={idx}>{error}</li>
+                                <li className='validation-errors' style={{ 'listStyle': 'none' }} key={idx}>{error}</li>
                             ))}
                         </ul>
                         <label>
@@ -65,7 +71,7 @@ export default function LandingPage() {
                                 required
                             />
                         </label>
-                        <button type="submit">Sign In</button>
+                        <button className='login-button' type="submit">Sign In</button>
                     </form>
                 </div>
                 <img className='landing-image' src={image}></img>

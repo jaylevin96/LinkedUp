@@ -1,3 +1,6 @@
+:root {
+  --buttons-color: #0b6be7;
+}
 #landing-page {
   width: 100%;
   height: 100%;
@@ -38,4 +41,20 @@
 }
 .landing-login-form input {
   height: 40px;
+}
+
+.login-button {
+  border-radius: 10px;
+  margin-top: 2em;
+  padding: 0.6em 0.6em;
+  width: 75%;
+  /* margin: auto; */
+  border: none;
+  color: white;
+  background-color: var(--buttons-color);
+}
+
+.landing-links a {
+  text-decoration: none;
+  margin-right: 1.4em;
 }
