@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(40),nullable=False)
     last_name = db.Column(db.String(40),nullable=False)
     title = db.Column(db.String(40),nullable=False)
-    profileImage = db.Column(db.String(255),default="someLinkhere.com")
+    profileImage = db.Column(db.String(255),default="https://jlevin96-bucket.s3.us-east-2.amazonaws.com/b6a0d1d480e5447595dc6c0f054eba13.jpg")
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
