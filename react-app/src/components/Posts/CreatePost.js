@@ -9,6 +9,7 @@ export default function CreatePost() {
     let user = useSelector(state => state.session.user)
 
     return <div id="create-post-container">
+        <img className="profile-image" src={user.profileImage}></img>
         <OpenModalButton modalComponent={<CreatePostModal user={user} />} buttonText={"Start a post"} />
     </div>
 }

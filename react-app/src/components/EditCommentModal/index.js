@@ -16,7 +16,7 @@ export default function EditCommentModal({ comment, user }) {
             postId: comment.postId
         }
         const data = await dispatch(editCommentThunk(comment.id, body))
-
+        console.log(data);
         if (data && data.errors) {
             setErrors(data.errors.message)
             return
@@ -26,11 +26,12 @@ export default function EditCommentModal({ comment, user }) {
 
         }
     }
-
+    console.log(errors);
     return (
         <div className="modal-container">
             <h1>Edit your Comment</h1>
             <div className="modal-user-info">
+                <img className="profile-image" src={user.profileImage}></img>
                 <div>
                     {`${user.firstname} ${user.lastname}`}
                 </div>

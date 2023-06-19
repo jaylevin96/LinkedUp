@@ -13,5 +13,5 @@ def user_id_exists(form, field):
         raise ValidationError("User does not exist")
 
 class PostForm(FlaskForm):
-    message = StringField("Post message", validators=[DataRequired(),Length(min=1,max=255,message="Post must have at least 1 character and must not exceed 255 characters")])
+    message = StringField("Post message", validators=[DataRequired(),Length(min=1,max=255,message="Post can not exceed 255 characters")])
     userId = IntegerField("User Id", validators=[DataRequired(), user_id_exists])

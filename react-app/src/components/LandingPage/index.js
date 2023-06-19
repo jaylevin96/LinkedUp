@@ -1,0 +1,77 @@
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { NavLink, useParams, useHistory, Redirect } from 'react-router-dom';
+import { login } from "../../store/session";
+import image from "../../assets/static/Landing-page-image.png"
+import "./landing.css"
+export default function LandingPage() {
+    const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
+    const history = useHistory()
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState([]);
+
+    if (sessionUser) return <Redirect to="/home" />;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const data = await dispatch(login(email, password));
+        if (data) {
+            setErrors(data);
+        }
+    };
+
+    return (
+        <div id='landing-page'>
+
+            <div id="landing-navigation">
+                <span id='logo'
+                    onClick={() => {
+                        sessionUser ? history.push('/home') : history.push('/')
+                    }}
+                >
+                    Linked
+                    <span className='nav-bar-logo'>Up</span>
+                </span>
+                <div>
+                    <NavLink to="/signup">Join now</NavLink>
+                    <NavLink to="/login"> Sign in</NavLink>
+                </div>
+            </div>
+            <div id="landing-body">
+                <div>
+                    <h2 id="welcome">Welcome to your professional community</h2>
+                    <form className='landing-login-form' onSubmit={handleSubmit}>
+                        <ul>
+                            {errors.map((error, idx) => (
+                                <li key={idx}>{error}</li>
+                            ))}
+                        </ul>
+                        <label>
+                            Email
+                            <input
+                                type="text"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </label>
+                        <label>
+                            Password
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </label>
+                        <button type="submit">Sign In</button>
+                    </form>
+                </div>
+                <img className='landing-image' src={image}></img>
+            </div>
+
+
+        </div >)
+
+}

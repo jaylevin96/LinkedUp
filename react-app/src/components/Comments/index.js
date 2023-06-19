@@ -31,7 +31,15 @@ export default function Comments({ post, user }) {
         return <></>
     }
     const handleEnter = async (e) => {
-        if (e.key === "Enter" && !e.shiftKey) {
+        // if (!newComment.length) {
+
+        //     return
+        // }
+        if (!newComment.length) {
+            setNewComment(prev => '')
+        }
+        if (e.key === "Enter" && !e.shiftKey && newComment.length) {
+
             let body = {
                 message: newComment,
                 "postId": post.id
@@ -42,7 +50,8 @@ export default function Comments({ post, user }) {
                 setErrors(data.errors.message)
                 return
             }
-            setNewComment('')
+
+            setNewComment(prev => '')
         }
     };
 
@@ -61,7 +70,7 @@ export default function Comments({ post, user }) {
         {comments.map((comment, index) => {
             // const commentRef = useRef()
             // commentRefs.current[index] = commentRef
-            return <CommentDetails comment={comment} user={user} />
+            return <CommentDetails comment={comment} user={user} key={comment.id} />
         })}
     </>
 }

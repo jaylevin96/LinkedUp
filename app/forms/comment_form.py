@@ -20,4 +20,4 @@ def post_id_exists(form, field):
 class CommentForm(FlaskForm):
     userId = IntegerField("User Id", validators=[DataRequired(), user_id_exists])
     postId = IntegerField("Post Id", validators=[DataRequired(), post_id_exists])
-    message = StringField("Comment message", validators=[DataRequired(),Length(min=1,max=255,message="Post must have at least 1 character and must not exceed 255 characters")])
+    message = StringField("Comment message", validators=[DataRequired(),Length(min=1,max=255,message="Comment can not exceed 255 characters")])

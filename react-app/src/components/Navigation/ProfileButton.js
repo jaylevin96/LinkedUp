@@ -46,13 +46,13 @@ function ProfileButton({ user }) {
     <>
       <button id="profile-button" onClick={openMenu}>
 
-        <span className="list-option-text"> Me</span>
+        <span className="list-option-text"> <i className="fa-solid fa-gear fa-lg" id="nav-gearbox"></i></span>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
 
-            <li>{user.email}</li>
+            <li>{user.firstname}</li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>

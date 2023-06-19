@@ -1,9 +1,6 @@
 :root {
   --button-color: #8e8989;
-}
-
-.profile-dropdown {
-  position: absolute;
+  --icon-color: #0b6be7;
 }
 
 .hidden {
@@ -11,7 +8,7 @@
 }
 #nav-bar {
   display: flex;
-  width: 90%;
+  width: 85%;
   margin: auto;
   list-style-type: none;
   justify-content: flex-end;
@@ -42,6 +39,10 @@
   font-size: 11pt;
   margin-top: 1em;
 }
+#nav-gearbox {
+  color: var(--icon-color);
+  position: relative;
+}
 
 #profile-button {
   border: none;
@@ -53,5 +54,56 @@
   justify-content: center;
   align-items: center;
 }
-#profile-button i {
+.nav-bar-logo {
+  background-color: var(--icon-color);
+  padding: 0.2em;
+  color: white;
+  border-radius: 5px;
+  font-weight: 900;
+  font-size: 16pt;
+  margin-left: 0.1em;
 }
+#logo {
+  margin-left: 1em;
+  cursor: pointer;
+  /* margin-right: 3em; */
+}
+.options-list {
+  position: relative;
+}
+.profile-dropdown {
+  background-color: white;
+  /* border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px; */
+  box-shadow: 3px 4px 12px gray;
+  border: 0.5pt solid gray;
+  /* padding: 1em; */
+  padding: 0.3em 0;
+  position: absolute;
+  right: 1px;
+  top: 2.6em;
+  width: 100px;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* bottom: 1em; */
+}
+.profile-dropdown li {
+  padding: 0.7em 0.5em;
+  margin: 0.5em auto;
+  width: 100%;
+  list-style: none;
+  /* cursor: pointer; */
+  text-align: center;
+}
+.profile-dropdown li button {
+  background-color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0.3em 0.5em;
+}
+/* .profile-dropdown li:hover {
+  background-color: #e3dede;
+} */

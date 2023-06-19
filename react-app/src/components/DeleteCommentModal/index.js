@@ -29,6 +29,7 @@ export default function DeleteCommentModal({ comment, user }) {
         <div className="modal-container">
             <h1>Are you sure you want to delete this comment?</h1>
             <div className="modal-user-info">
+                <img className="profile-image" src={user.profileImage}></img>
                 <div>
                     {`${user.firstname} ${user.lastname}`}
                 </div>

@@ -29,70 +29,76 @@ export default function CommentDetails({ comment, user }) {
     }, [])
 
     return (
-        <div className='comments-details-container' key={comment.id}>
-            <div className='comments-details-header'>
-                <div>
+        <div className='comments-overview-container'>
+            <div>
+
+                <img className="comments-profile-image" src={comment.UserInfo.profileImage}></img>
+            </div>
+            <div className='comments-details-container' key={comment.id}>
+                <div className='comments-details-header'>
                     <div>
-                        {`${comment.UserInfo.firstname} ${comment.UserInfo.lastname}`}
+                        <div>
+                            {`${comment.UserInfo.firstname} ${comment.UserInfo.lastname}`}
+                        </div>
+                        <div>
+                            {comment.UserInfo.title}
+                        </div>
+                        <span className='comment-details-created'>{comment.createdAt}</span>
                     </div>
-                    <div>
-                        {comment.UserInfo.title}
-                    </div>
-                    <span className='comment-details-created'>{comment.createdAt}</span>
+
+
+                    {comment.userId === user.id && (<span className='details-elips'>
+
+                        <i className="fa-solid fa-ellipsis" ref={commentRef}
+                            onClick={() => {
+                                // let newOptions = {...showCommentOptions}
+                                setShowCommentOptions(!showCommentOptions)
+                            }}
+                        ></i>
+
+                        {showCommentOptions && (
+                            <div className='options'>
+                                <span className='options-details'>
+                                    <OpenModalButton modalComponent={<EditCommentModal comment={comment} user={user} />} buttonText={
+
+                                        <>
+                                            <i className="fa-solid fa-pen-to-square"></i>
+                                            <span className='specific-option'>
+                                                Edit
+                                            </span>
+                                        </>
+
+
+                                    } />
+
+
+                                </span>
+                                <span className='options-details'>
+                                    <OpenModalButton modalComponent={<DeleteCommentModal comment={comment} user={user} />} buttonText={
+                                        <>
+                                            <i className="fa-solid fa-trash-can"></i>
+                                            <span className='specific-option'>
+                                                Delete
+                                            </span>
+                                        </>
+
+                                    } />
+
+                                </span>
+                            </div>
+                        )}
+                    </span>)}
+
+
+
                 </div>
 
+                {/* {comment.userId === user.id && ()} */}
 
-                {comment.userId === user.id && (<span className='details-elips'>
+                <div className='comment-details-message'>
+                    {comment.message}
 
-                    <i className="fa-solid fa-ellipsis" ref={commentRef}
-                        onClick={() => {
-                            // let newOptions = {...showCommentOptions}
-                            setShowCommentOptions(!showCommentOptions)
-                        }}
-                    ></i>
-
-                    {showCommentOptions && (
-                        <div className='options'>
-                            <span className='options-details'>
-                                <OpenModalButton modalComponent={<EditCommentModal comment={comment} user={user} />} buttonText={
-
-                                    <>
-                                        <i className="fa-solid fa-pen-to-square"></i>
-                                        <span className='specific-option'>
-                                            Edit
-                                        </span>
-                                    </>
-
-
-                                } />
-
-
-                            </span>
-                            <span className='options-details'>
-                                <OpenModalButton modalComponent={<DeleteCommentModal comment={comment} user={user} />} buttonText={
-                                    <>
-                                        <i className="fa-solid fa-trash-can"></i>
-                                        <span className='specific-option'>
-                                            Delete
-                                        </span>
-                                    </>
-
-                                } />
-
-                            </span>
-                        </div>
-                    )}
-                </span>)}
-
-
-
-            </div>
-
-            {/* {comment.userId === user.id && ()} */}
-
-            <div className='comment-details-message'>
-                {comment.message}
-
+                </div>
             </div>
         </div>)
 }

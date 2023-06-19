@@ -28,6 +28,7 @@ export default function CreatePostModal({ user }) {
         <div className="modal-container">
             {/* <h1>Start a post</h1> */}
             <div className="modal-user-info">
+                <img className="profile-image" src={user.profileImage}></img>
                 <div>
                     {`${user.firstname} ${user.lastname}`}
                 </div>

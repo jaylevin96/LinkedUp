@@ -28,6 +28,7 @@ export default function DeletePostModal({ post, user }) {
         <div className="modal-container">
             <h1>Are you sure you want to delete this post?</h1>
             <div className="modal-user-info">
+                <img className="profile-image" src={user.profileImage}></img>
                 <div>
                     {`${user.firstname} ${user.lastname}`}
                 </div>

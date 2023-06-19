@@ -28,7 +28,7 @@ export default function EditPostModal({ post, user }) {
         <div className="modal-container">
             <h1>Edit your post</h1>
             <div className="modal-user-info">
-
+                <img className="profile-image" src={user.profileImage}></img>
                 <div>
                     {`${user.firstname} ${user.lastname}`}
                 </div>

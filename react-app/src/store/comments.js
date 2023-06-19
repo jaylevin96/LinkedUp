@@ -95,6 +95,7 @@ export const editCommentThunk = (id, data) => async dispatch => {
         }
     }
     else {
+        console.log("hi");
         const data = await response.json()
         if (data.errors) return data
     }

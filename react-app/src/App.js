@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Posts from "./components/Posts";
 import CreatePost from "./components/Posts/CreatePost";
+import LandingPage from "./components/LandingPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
           <Route path="/profile">
             <Navigation isLoaded={isLoaded} />
           </Route>
+          <LandingPage />
         </Switch>
       )}
     </>
