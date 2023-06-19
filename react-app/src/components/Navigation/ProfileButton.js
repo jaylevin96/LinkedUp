@@ -22,7 +22,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (ulRef && !ulRef.current.contains(e.target)) {
+      if (ulRef && ulRef.current && !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
