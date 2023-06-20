@@ -38,10 +38,15 @@ export default function LandingPage() {
                     <span className='nav-bar-logo'>Up</span>
                 </span>
                 <div className="landing-links">
-                    <NavLink to="/signup"
-                        activeStyle={{ color: "gray", borderBottom: "2pt solid black" }}
-                    >Join now</NavLink>
-                    <NavLink to="/login"> Sign in</NavLink>
+                    <div id="signup-link">
+                        <NavLink exact to="/signup"
+                        >Join now</NavLink>
+
+                    </div>
+                    <div id='login-link'>
+                        <NavLink exact to="/login"> Sign in</NavLink>
+
+                    </div>
                 </div>
             </div>
             <div id="landing-body">

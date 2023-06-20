@@ -56,7 +56,7 @@
 }
 .nav-bar-logo {
   background-color: var(--icon-color);
-  padding: 0.2em;
+  padding: 0.1em 0.2em;
   color: white;
   border-radius: 5px;
   font-weight: 900;

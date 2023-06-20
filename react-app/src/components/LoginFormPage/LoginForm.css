@@ -1,0 +1,49 @@
+:root {
+  --buttons-color: #0b6be7;
+}
+.sign-in-page-container {
+  display: flex;
+  margin: auto;
+  margin-top: 10em;
+  /* padding-bottom: 2em; */
+  padding: 2em;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px gray;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+
+  /* row-gap: 2em; */
+}
+.login-form input {
+  height: 50px;
+  margin: 1em 0;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.login-form button {
+  color: white;
+  background-color: var(--buttons-color);
+  border-radius: 15px;
+  border: 0;
+  padding: 1em;
+  margin-top: 2em;
+  font-weight: 600;
+}
+#bottom-join {
+  margin: auto;
+  margin-top: 3em;
+  width: fit-content;
+}
+#bottom-join a {
+  text-decoration: none;
+  color: var(--buttons-color);
+  cursor: pointer;
+}

@@ -6,6 +6,11 @@
   height: 100%;
   background-color: white;
 }
+
+#logo {
+  color: var(--buttons-color);
+  font-weight: 600;
+}
 .landing-image {
   width: 600px;
   height: auto;
@@ -57,4 +62,21 @@
 .landing-links a {
   text-decoration: none;
   margin-right: 1.4em;
+}
+
+.landing-links {
+  display: flex;
+}
+
+#signup-link a {
+  color: gray;
+  font-weight: 600;
+}
+
+#login-link a {
+  color: var(--buttons-color);
+  background-color: white;
+  border: 1pt solid var(--buttons-color);
+  padding: 0.5em 1em;
+  border-radius: 10px;
 }

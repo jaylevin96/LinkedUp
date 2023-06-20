@@ -1,0 +1,19 @@
+#file-input {
+  margin: 0 auto;
+  padding: 0;
+}
+
+#cheesy-professional {
+  margin: auto;
+  width: fit-content;
+  margin-top: 2em;
+}
+
+#profile-button-upload {
+  cursor: pointer;
+  margin: auto;
+  border-radius: 15px;
+  border: 2pt solid gray;
+  padding: 1em;
+  /* width: 100%; */
+}
