@@ -77,6 +77,11 @@ export default function LandingPage() {
                             />
                         </label>
                         <button className='login-button' type="submit">Sign In</button>
+                        <button className='login-button'
+                            onClick={() => {
+                                dispatch(login("demo@aa.io", "password"));
+                            }}
+                        >Demo User</button>
                     </form>
                 </div>
                 <img className='landing-image' src={image}></img>
