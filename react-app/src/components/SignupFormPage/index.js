@@ -123,6 +123,7 @@ function SignupFormPage() {
 
           <button type="submit">Join</button>
         </form>
+
       </div>
       <div id="bottom-join" style={{ marginBottom: "2em" }}>
         Already on LinkedUp? <NavLink to="/login">Sign in</NavLink>

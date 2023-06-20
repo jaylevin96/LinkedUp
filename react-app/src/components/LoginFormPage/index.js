@@ -64,6 +64,11 @@ function LoginFormPage() {
 
           <button type="submit">Sign In</button>
         </form>
+        <button className='login-button demo-button'
+          onClick={() => {
+            dispatch(login("demo@aa.io", "password"));
+          }}
+        >Demo User</button>
       </div>
       <div id="bottom-join">
         New to LinkedUp? <NavLink to="/signup">Join now</NavLink>

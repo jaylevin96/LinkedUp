@@ -1,3 +1,6 @@
+:root {
+  --buttons-color: #0b6be7;
+}
 #file-input {
   margin: 0 auto;
   padding: 0;
@@ -13,7 +16,8 @@
   cursor: pointer;
   margin: auto;
   border-radius: 15px;
-  border: 2pt solid gray;
+  color: var(--buttons-color);
+  border: 2pt solid var(--buttons-color);
   padding: 1em;
   /* width: 100%; */
 }

@@ -9,7 +9,7 @@
 
 #logo {
   color: var(--buttons-color);
-  font-weight: 600;
+  font-weight: 800;
 }
 .landing-image {
   width: 600px;
@@ -26,6 +26,7 @@
 #welcome {
   color: brown;
   margin-bottom: 2em;
+  font-weight: 400;
 }
 #landing-body {
   margin-left: 2em;
@@ -51,11 +52,13 @@
 .login-button {
   border-radius: 10px;
   margin-top: 2em;
-  padding: 0.6em 0.6em;
+  padding: 0.5em;
   width: 75%;
   /* margin: auto; */
   border: none;
   color: white;
+  font-weight: 600;
+  font-size: 13pt;
   background-color: var(--buttons-color);
 }
 
@@ -79,4 +82,10 @@
   border: 1pt solid var(--buttons-color);
   padding: 0.5em 1em;
   border-radius: 10px;
+}
+
+.demo-button {
+  background-color: brown;
+  margin-top: 1em;
+  width: 100%;
 }

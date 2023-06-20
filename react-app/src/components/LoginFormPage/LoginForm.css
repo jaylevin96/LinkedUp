@@ -33,9 +33,11 @@
   background-color: var(--buttons-color);
   border-radius: 15px;
   border: 0;
-  padding: 1em;
+  padding: 0.5em;
   margin-top: 2em;
   font-weight: 600;
+  font-weight: 600;
+  font-size: 13pt;
 }
 #bottom-join {
   margin: auto;
