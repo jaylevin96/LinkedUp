@@ -13,7 +13,7 @@
 }
 #profile-container img {
   border-radius: 100%;
-  border: 2pt solid black;
+  border: 3pt solid white;
   width: 250px;
   height: auto;
 }
@@ -32,4 +32,22 @@
   padding: 1em;
   border-bottom: 1pt solid gray;
   /* border-top: 1pt solid gray; */
+}
+
+.profile-container-header {
+  display: flex;
+  flex-direction: column;
+}
+.profile-container-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-container-name {
+  font-weight: 700;
+  font-size: 18pt;
+}
+.profile-container-title {
+  font-weight: 400;
+  font-size: 13pt;
 }

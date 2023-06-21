@@ -19,7 +19,7 @@ export default function ProfileDetails() {
         window.scrollTo(0, 0)
 
         dispatch(getProfileThunk(userId))
-    }, [])
+    }, [userId])
 
 
 
@@ -32,16 +32,19 @@ export default function ProfileDetails() {
     let userDetails = user.userDetails
 
     return <div id="profile-container">
-        <div>
+        <div className="profile-container-header">
             <div>
                 <img src={userDetails.profileImage}></img>
             </div>
-            <div>
-                {`${userDetails.firstname} ${userDetails.lastname}`}
-            </div>
-            <div>
-                {userDetails.title}
+            <div className="profile-container-info">
 
+                <div className="profile-container-name">
+                    {`${userDetails.firstname} ${userDetails.lastname}`}
+                </div>
+                <div className="profile-container-title">
+                    {userDetails.title}
+
+                </div>
             </div>
 
         </div>

@@ -15,7 +15,7 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [image, setImage] = useState(null)
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   if (sessionUser) return <Redirect to="/home" />;
 
@@ -36,10 +36,11 @@ function SignupFormPage() {
         setErrors(data)
       }
     } else {
-      setErrors(['Passwords must match']);
+      setErrors({ password: ['Passwords must match'] });
     }
   };
   // console.log(image);
+  console.log(errors);
 
   return (
     <>
@@ -55,10 +56,10 @@ function SignupFormPage() {
       <h2 id="cheesy-professional">Make the most of your professional life</h2>
       <div className="sign-in-page-container" style={{ marginTop: "2em", marginBottom: "2em" }}>
         <form className="login-form" onSubmit={handleSubmit} encType="multipart/form-data">
-          <ul>
+          {/* <ul>
             {errors.map((error, idx) => <li className="validation-errors" key={idx} style={{ listStyle: "none" }}>{error} </li>)}
-          </ul>
-
+          </ul> */}
+          {errors.email && <span className="validation-errors">{errors.email[0]}</span>}
           <input
             type="text"
             value={email}
@@ -67,7 +68,7 @@ function SignupFormPage() {
             required
           />
 
-
+          {errors.first_name && <span className="validation-errors">{errors.first_name[0]}</span>}
           <input
             type="text"
             value={firstname}
@@ -76,7 +77,7 @@ function SignupFormPage() {
             required
           />
 
-
+          {errors.last_name && <span className="validation-errors">{errors.last_name[0]}</span>}
           <input
             type="text"
             value={lastname}
@@ -85,7 +86,7 @@ function SignupFormPage() {
             required
           />
 
-
+          {errors.title && <span className="validation-errors">{errors.title[0]}</span>}
           <input
             type="text"
             value={title}
@@ -96,7 +97,7 @@ function SignupFormPage() {
 
 
 
-
+          {errors.password && <span className="validation-errors">{errors.password[0]}</span>}
           <input
             type="password"
             value={password}
