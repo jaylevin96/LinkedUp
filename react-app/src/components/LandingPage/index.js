@@ -21,7 +21,7 @@ export default function LandingPage() {
         const data = await dispatch(login(email, password));
         if (data) {
 
-            setErrors(data);
+            setErrors(['The provided credentials are incorrect']);
         }
     };
 
@@ -55,7 +55,7 @@ export default function LandingPage() {
                     <form className='landing-login-form' onSubmit={handleSubmit}>
                         <ul>
                             {errors.map((error, idx) => (
-                                <li className='validation-errors' style={{ 'listStyle': 'none' }} key={idx}>{error}</li>
+                                <li className='validation-errors' style={{ 'listStyle': 'none', textAlign: "left" }} key={idx}>{error}</li>
                             ))}
                         </ul>
                         <label>
@@ -78,7 +78,7 @@ export default function LandingPage() {
                         </label>
                         <button className='login-button' type="submit">Sign In</button>
                     </form>
-                    <div style={{ width: "298.5px" }}>
+                    <div >
                         <button className='login-button demo-button'
                             onClick={() => {
                                 dispatch(login("demo@aa.io", "password"));

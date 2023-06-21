@@ -87,5 +87,7 @@
 .demo-button {
   background-color: brown;
   margin-top: 1em;
-  width: 100%;
+  width: 75%;
+  cursor: pointer;
+  /* width: 100%; */
 }

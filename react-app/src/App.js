@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Posts from "./components/Posts";
+import ProfileDetails from "./components/ProfileDetails";
 import CreatePost from "./components/Posts/CreatePost";
 import LandingPage from "./components/LandingPage";
 
@@ -32,8 +33,9 @@ function App() {
             <CreatePost />
             <Posts />
           </Route>
-          <Route exact path="/profile">
+          <Route path="/profile/:userId">
             <Navigation isLoaded={isLoaded} />
+            <ProfileDetails />
           </Route>
           <LandingPage />
         </Switch>

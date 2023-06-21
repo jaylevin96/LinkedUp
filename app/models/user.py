@@ -39,3 +39,6 @@ class User(db.Model, UserMixin):
         }
     userPosts = db.relationship("Post", back_populates="user",cascade="delete-orphan, all")
     userComments = db.relationship("Comment",back_populates="user",cascade="delete-orphan, all")
+    userEducations = db.relationship("UserEducation",back_populates="user",cascade="delete-orphan,all")
+    userExperiences = db.relationship("UserExperience",back_populates="user",cascade="delete-orphan,all")
+    userSkills = db.relationship("UserSkill",back_populates="user",cascade="delete-orphan,all")

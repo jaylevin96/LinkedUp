@@ -19,7 +19,7 @@ function LoginFormPage() {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors(['The provided credentials are incorrect']);
     }
   };
 
@@ -41,7 +41,9 @@ function LoginFormPage() {
         <form className="login-form" onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li className="validation-errors" key={idx}
+                style={{ listStyle: "none", textAlign: "left" }}
+              >{error}</li>
             ))}
           </ul>
 
@@ -65,6 +67,7 @@ function LoginFormPage() {
           <button type="submit">Sign In</button>
         </form>
         <button className='login-button demo-button'
+          style={{ width: "100%" }}
           onClick={() => {
             dispatch(login("demo@aa.io", "password"));
           }}
