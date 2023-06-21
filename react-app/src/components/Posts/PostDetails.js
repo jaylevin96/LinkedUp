@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import OpenModalButton from "../OpenModalButton";
 import EditPostModal from '../EditPostModal';
@@ -13,6 +13,7 @@ export default function PostDetails({ post, user }) {
     const [showComments, setShowComments] = useState(false)
     const [showPostOptions, setShowPostOptions] = useState(false)
     const postRef = useRef()
+    const history = useHistory()
 
     const closeMenu = (e) => {
 
@@ -41,12 +42,19 @@ export default function PostDetails({ post, user }) {
                 <div className='post-details-header'>
                     <div className='post-details-user'>
                         <div>
-                            <img className='profile-image' src={post.UserInfo.profileImage}></img>
+                            <img className='profile-image' src={post.UserInfo.profileImage}
+                                onClick={() => {
+                                    history.push(`/profile/${post.userId}`)
+                                }}
+                            ></img>
                         </div>
                         <div>
 
-                            <div>
-                                {`${post.UserInfo.firstname} ${post.UserInfo.lastname}`}
+                            <div className='post-details-name'>
+                                <NavLink to={`/profile/${post.userId}`}
+
+                                >{`${post.UserInfo.firstname} ${post.UserInfo.lastname}`}</NavLink>
+
 
                             </div>
 

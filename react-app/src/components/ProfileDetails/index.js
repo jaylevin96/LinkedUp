@@ -14,10 +14,14 @@ export default function ProfileDetails() {
     const dispatch = useDispatch()
     const { userId } = params
     let user = useSelector((state) => state.profiles[userId])
-
+    let currentUser = useSelector((state) => state.session.user)
     useEffect(() => {
+        window.scrollTo(0, 0)
+
         dispatch(getProfileThunk(userId))
     }, [])
+
+
 
 
     if (!user) {
@@ -45,7 +49,8 @@ export default function ProfileDetails() {
         <div className="profile-section">
             <div className="profile-section-header">
                 <h3>Experience</h3>
-                <OpenModalButton modalComponent={<CreateExperienceModal user={userDetails} />} buttonText={<i className="fa-solid fa-plus fa-lg"></i>} />
+                {currentUser.id === userDetails.id && (<OpenModalButton modalComponent={<CreateExperienceModal user={userDetails} />} buttonText={<i className="fa-solid fa-plus fa-lg"></i>} />)}
+
             </div>
             <div>
 
@@ -59,7 +64,7 @@ export default function ProfileDetails() {
             <div className="profile-section-header">
 
                 <h3>Education</h3>
-                <OpenModalButton modalComponent={<CreateEducationModal user={userDetails} />} buttonText={<i className="fa-solid fa-plus fa-lg"></i>} />
+                {currentUser.id === userDetails.id && (<OpenModalButton modalComponent={<CreateExperienceModal user={userDetails} />} buttonText={<i className="fa-solid fa-plus fa-lg"></i>} />)}
             </div>
 
             <div>

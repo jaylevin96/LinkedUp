@@ -78,6 +78,9 @@
   /* margin-left: 5em; */
   display: flex;
 }
+.post-details-user img {
+  cursor: pointer;
+}
 .post-details-options-buttons {
   margin-right: 1em;
 }
@@ -96,6 +99,11 @@
   width: 25px;
   height: auto;
   color: var(--posts-icon-color);
+}
+.post-details-name a {
+  color: var(--posts-icon-color);
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .button-post-comment {
