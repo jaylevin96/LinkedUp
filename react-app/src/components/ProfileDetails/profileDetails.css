@@ -1,3 +1,6 @@
+:root {
+  --button-color: #0b6be7;
+}
 .profile-section {
   width: 600px;
   padding: 1em;
@@ -7,4 +10,26 @@
 }
 #profile-container {
   margin: 2em;
+}
+#profile-container img {
+  border-radius: 100%;
+  border: 2pt solid black;
+  width: 250px;
+  height: auto;
+}
+
+.profile-section-header {
+  display: flex;
+  justify-content: space-between;
+}
+.profile-section-header button {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  color: var(--button-color);
+}
+.profile-section-details {
+  padding: 1em;
+  border-bottom: 1pt solid gray;
+  /* border-top: 1pt solid gray; */
 }

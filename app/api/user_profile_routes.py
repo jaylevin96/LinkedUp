@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
 from app.models import User, db, UserEducation, UserSkill, UserExperience
+from app.forms import UserEducationForm, UserExperienceForm
 
 user_profile_routes = Blueprint('user_information',__name__)
 
@@ -18,3 +19,53 @@ def get_profile_details(user_id):
             "skills":[skill.to_dict() for skill in skills],
             "experiences":[experience.to_dict() for experience in experiences],
             "userDetails": user.to_dict()}
+
+
+@user_profile_routes.route('/experiences',methods=["POST"])
+@login_required
+def add_experience():
+    form = UserExperienceForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate():
+        res = UserExperience(
+            userId= current_user.id,
+            company=form.data['company'],
+            fromDate = form.data['fromDate'],
+            toDate = form.data['toDate'],
+            experienceTitle = form.data['experienceTitle'],
+            experienceDetails = form.data['experienceDetails']
+
+        )
+        db.session.add(res)
+        db.session.commit()
+        return res.to_dict()
+    else:
+        errors = form.errors
+        return errors, 400
+
+
+
+@user_profile_routes.route('/educations',methods=["POST"])
+@login_required
+def add_education():
+    form = UserEducationForm()
+    data = request.get_json()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate():
+        res = UserEducation(
+            userId= current_user.id,
+            field=form.data['field'],
+            fromDate = form.data['fromDate'],
+            toDate = form.data['toDate'],
+            school = form.data['school'],
+            degree = form.data['degree']
+
+        )
+        db.session.add(res)
+        db.session.commit()
+        return res.to_dict()
+    else:
+        errors = form.errors
+        return errors, 400

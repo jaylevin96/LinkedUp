@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { getProfileThunk } from "../../store/userProfiles";
+import OpenModalButton from "../OpenModalButton";
+import CreateExperienceModal from "../NewExperienceModal";
+import CreateEducationModal from "../NewEducationModal";
 import Education from "./education";
 import Experience from "./experience";
 import Skill from "./skill";
@@ -40,7 +43,10 @@ export default function ProfileDetails() {
         </div>
 
         <div className="profile-section">
-            <h3>Experience</h3>
+            <div className="profile-section-header">
+                <h3>Experience</h3>
+                <OpenModalButton modalComponent={<CreateExperienceModal user={userDetails} />} buttonText={<i className="fa-solid fa-plus fa-lg"></i>} />
+            </div>
             <div>
 
 
@@ -50,7 +56,12 @@ export default function ProfileDetails() {
             </div>
         </div>
         <div className="profile-section">
-            <h3>Education</h3>
+            <div className="profile-section-header">
+
+                <h3>Education</h3>
+                <OpenModalButton modalComponent={<CreateEducationModal user={userDetails} />} buttonText={<i className="fa-solid fa-plus fa-lg"></i>} />
+            </div>
+
             <div>
                 {user.educations.map(education => {
                     return <Education education={education} />

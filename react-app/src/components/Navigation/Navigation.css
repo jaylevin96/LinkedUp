@@ -1,5 +1,5 @@
 :root {
-  --button-color: #8e8989;
+  --nav-button-color: #8e8989;
   --icon-color: #0b6be7;
 }
 
@@ -18,7 +18,7 @@
 }
 #nav-bar a {
   text-decoration: none;
-  color: var(--button-color);
+  color: var(--nav-button-color);
 }
 #nav-bar-background {
   width: 100%;
@@ -47,7 +47,7 @@
 #profile-button {
   border: none;
   background-color: white;
-  color: var(--button-color);
+  color: var(--nav-button-color);
   cursor: pointer;
   display: flex;
   flex-direction: column;

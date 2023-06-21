@@ -72,3 +72,36 @@
   justify-content: center;
   width: 100%;
 }
+
+.new-section-form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* padding: 1em; */
+  width: 400px;
+  align-items: center;
+  justify-content: center;
+}
+.new-section-form label {
+  width: 75%;
+  margin: 0.3em 0;
+}
+.new-section-form input,
+.new-section-form textarea {
+  width: 100%;
+}
+
+.new-section-form textarea {
+  height: 100px;
+}
+.new-section-form button {
+  background-color: var(--buttons-color);
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  padding: 0.3em 0.6em;
+  font-weight: 600;
+  width: 50%;
+  font-size: 12pt;
+  margin-top: 1em;
+}
