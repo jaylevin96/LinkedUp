@@ -70,7 +70,7 @@ export default function ProfileDetails() {
             <div className="profile-section-header">
 
                 <h3>Education</h3>
-                {currentUser.id === userDetails.id && (<OpenModalButton modalComponent={<CreateExperienceModal user={userDetails} />} buttonText={<i className="fa-solid fa-plus fa-lg"></i>} />)}
+                {currentUser.id === userDetails.id && (<OpenModalButton modalComponent={<CreateEducationModal user={userDetails} />} buttonText={<i className="fa-solid fa-plus fa-lg"></i>} />)}
             </div>
 
             <div>

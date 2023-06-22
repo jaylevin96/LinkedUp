@@ -105,3 +105,8 @@
   font-size: 12pt;
   margin-top: 1em;
 }
+.profile-section-input {
+  border: 1pt solid var(--buttons-color);
+  border-radius: 5px;
+  padding: 0.2em;
+}

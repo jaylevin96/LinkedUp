@@ -54,10 +54,11 @@ export default function CreateSkillModal({ user }) {
                 <h2>Add Skill</h2>
                 <form className="new-section-form" onSubmit={handleSubmit}>
                     <label>
-                        Skill
+
                         {errors.skill && <span style={{ marginLeft: "1em" }} className="validation-errors">{errors.skill[0]}</span>}
                         <input type="text" className="profile-section-input"
                             value={skill}
+                            placeholder="New skill"
                             onChange={(e) => setSkill(e.target.value)}>
 
                         </input>
