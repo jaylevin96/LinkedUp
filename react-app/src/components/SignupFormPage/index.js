@@ -40,7 +40,7 @@ function SignupFormPage() {
     }
   };
   // console.log(image);
-  console.log(errors);
+
 
   return (
     <>
@@ -114,7 +114,7 @@ function SignupFormPage() {
             required
           />
           <label id="profile-button-upload">
-            Add A Profile Picture
+            {image ? "Image added!" : "Add a profile picture"}
             <input id="file-input" type='file'
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}

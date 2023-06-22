@@ -9,6 +9,8 @@ import Education from "./education";
 import Experience from "./experience";
 import Skill from "./skill";
 import "./profileDetails.css"
+import CreateSkillModal from "../NewSkillModal";
+import EditImageModal from "../EditProfileImageModal";
 export default function ProfileDetails() {
     const params = useParams();
     const dispatch = useDispatch()
@@ -24,7 +26,7 @@ export default function ProfileDetails() {
 
 
 
-    if (!user) {
+    if (!user || !currentUser) {
         return <></>
     }
 
@@ -33,8 +35,9 @@ export default function ProfileDetails() {
 
     return <div id="profile-container">
         <div className="profile-container-header">
-            <div>
+            <div className="profile-image-container">
                 <img src={userDetails.profileImage}></img>
+                {currentUser.id === userDetails.id && (<OpenModalButton modalComponent={<EditImageModal />} buttonText={"Change photo"} />)}
             </div>
             <div className="profile-container-info">
 
@@ -77,9 +80,12 @@ export default function ProfileDetails() {
             </div>
         </div>
         <div className="profile-section">
-            <h3>Skills</h3>
+            <div className="profile-section-header">
+                <h3>Skills</h3>
+                {currentUser.id === userDetails.id && (<OpenModalButton modalComponent={<CreateSkillModal user={userDetails} />} buttonText={<i className="fa-solid fa-plus fa-lg"></i>} />)}
+            </div>
             <div>
-                <ul>
+                <ul className="profile-skills-list">
 
                     {user.skills.map(skill => {
                         return <Skill skill={skill} />

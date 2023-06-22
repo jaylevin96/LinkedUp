@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import User, db, UserEducation, UserSkill, UserExperience
-from app.forms import UserEducationForm, UserExperienceForm
+from app.forms import UserEducationForm, UserExperienceForm, UserSkillForm
 
 user_profile_routes = Blueprint('user_information',__name__)
 
@@ -62,6 +62,25 @@ def add_education():
             school = form.data['school'],
             degree = form.data['degree']
 
+        )
+        db.session.add(res)
+        db.session.commit()
+        return res.to_dict()
+    else:
+        errors = form.errors
+        return errors, 400
+
+
+@user_profile_routes.route('/skills',methods=["POST"])
+@login_required
+def add_skill():
+    form = UserSkillForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate():
+        res = UserSkill(
+            userId = current_user.id,
+            skill = form.data['skill']
         )
         db.session.add(res)
         db.session.commit()

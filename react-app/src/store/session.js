@@ -1,7 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
-
+const EDIT_USER_IMAGE = "session/EDIT_USER_IMAGE"
 const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
@@ -10,7 +10,12 @@ const setUser = (user) => ({
 const removeUser = () => ({
 	type: REMOVE_USER,
 });
-
+const editUserImage = (user) => {
+	return {
+		type: EDIT_USER_IMAGE,
+		payload: user
+	}
+}
 const initialState = { user: null };
 
 export const authenticate = () => async (dispatch) => {
@@ -66,7 +71,25 @@ export const logout = () => async (dispatch) => {
 		dispatch(removeUser());
 	}
 };
+export const editUserImageThunk = (formData) => async dispatch => {
+	const response = await fetch("/api/auth/edit", {
+		method: "put",
+		body: formData,
+	});
 
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(editUserImage(data));
+		return;
+	} else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+}
 export const signUp = (formData) => async (dispatch) => {
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",

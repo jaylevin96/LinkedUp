@@ -1,6 +1,7 @@
 const GET_PROFILE = "userProfiles/GET"
 const ADD_EDUCATION = "userProfiles/Education/POST"
 const ADD_EXPERIENCE = "userProfiles/Experience/POST"
+const ADD_SKILL = "userProfiles/Skill/POST"
 const getProfile = (userId, data) => {
     return {
         type: GET_PROFILE,
@@ -18,6 +19,13 @@ const addEducation = (data) => {
 const addExperience = (data) => {
     return {
         type: ADD_EXPERIENCE,
+        data
+    }
+}
+
+const addSkill = (data) => {
+    return {
+        type: ADD_SKILL,
         data
     }
 }
@@ -63,6 +71,22 @@ export const addExperienceThunk = (body) => async dispatch => {
     }
 }
 
+export const addSkillThunk = (body) => async dispatch => {
+    const response = await fetch('/api/userprofile/skills', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+    })
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(addSkill(data))
+    }
+    else {
+        const data = await response.json()
+        return data;
+    }
+}
+
 
 const initialState = {}
 export default function reducer(state = initialState, action) {
@@ -81,6 +105,12 @@ export default function reducer(state = initialState, action) {
             newState[action.data.userId].experiences = [...newState[action.data.userId].experiences]
             newState[action.data.userId].experiences.push(action.data)
             return newState
+        case ADD_SKILL:
+            newState[action.data.userId] = { ...newState[action.data.userId] }
+            newState[action.data.userId].skills = [...newState[action.data.userId].skills]
+            newState[action.data.userId].skills.push(action.data)
+            return newState;
+
         default:
             return state;
     }

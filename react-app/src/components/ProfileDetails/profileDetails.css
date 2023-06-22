@@ -21,6 +21,7 @@
 .profile-section-header {
   display: flex;
   justify-content: space-between;
+  color: var(--button-color);
 }
 .profile-section-header button {
   border: none;
@@ -50,4 +51,42 @@
 .profile-container-title {
   font-weight: 400;
   font-size: 13pt;
+}
+
+.profile-skills-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* column-gap: 1em; */
+  row-gap: 1em;
+  /* margin-top: 1em; */
+  padding: 1em;
+}
+
+.profile-skills-list {
+  word-break: break-all;
+  list-style: none;
+  font-style: italic;
+}
+
+.profile-image-container button {
+  border: 1pt solid var(--button-color);
+  background-color: white;
+  cursor: pointer;
+  color: var(--button-color);
+  /* padding: 0.5em; */
+  padding: 0.2em;
+  /* width: 70px; */
+  width: fit-content;
+  height: 25px;
+  border-radius: 10px;
+  position: relative;
+  bottom: 20px;
+  left: 75px;
+
+  /* right: 10px; */
+}
+.profile-image-container {
+  /* float: left; */
+  display: flex;
+  flex-direction: column;
 }

@@ -89,7 +89,32 @@ export default function LandingPage() {
                 </div>
                 <img className='landing-image' src={image}></img>
             </div>
+            <div className='contact-card-container'>
 
+                <div className='contact-card'>
+                    Connect with the Developer
+                    <div>
+                        Jay Levin
+                    </div>
+                    <span className='contact-links'>
+
+
+                        <a
+                            target="_blank"
+                            rel="noreferrer"
+                            href="https://linkedin.com/in/jay-levin">LinkedIn</a>
+                        <a
+                            target="_blank"
+                            rel="noreferrer"
+                            href="https://github.com/jaylevin96"
+
+                        >GitHub</a>
+
+                    </span>
+
+                </div>
+
+            </div>
 
         </div >)
 

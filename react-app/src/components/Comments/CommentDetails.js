@@ -43,7 +43,7 @@ export default function CommentDetails({ comment, user }) {
                         <div>
                             {comment.UserInfo.title}
                         </div>
-                        <span className='comment-details-created'>{comment.createdAt}</span>
+                        <span className='comment-details-created'>{new Date(comment.createdAt + " UTC").toLocaleString()}</span>
                     </div>
 
 

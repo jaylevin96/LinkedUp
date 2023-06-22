@@ -91,3 +91,28 @@
   cursor: pointer;
   /* width: 100%; */
 }
+.contact-card-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2em;
+  margin-right: 1em;
+}
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1pt solid var(--buttons-color);
+  border-radius: 10px;
+  padding: 1em;
+  /* color: var(--buttons-color); */
+}
+.contact-card a {
+  color: var(--buttons-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+.contact-links {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+}

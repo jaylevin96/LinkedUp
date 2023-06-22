@@ -61,7 +61,7 @@ export default function PostDetails({ post, user }) {
                             <div>
                                 {post.UserInfo.title}
                             </div>
-                            <div className='post-details-created'>{post.createdAt}</div>
+                            <div className='post-details-created'>{new Date(post.createdAt + " UTC").toLocaleString()}</div>
                         </div>
                     </div>
                     {post.userId === user.id && (<span className='details-elips'>

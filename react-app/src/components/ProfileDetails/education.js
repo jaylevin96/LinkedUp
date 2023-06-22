@@ -5,7 +5,7 @@ export default function Education({ education }) {
     return <div className="profile-section-details">
         <h4>{education.school}</h4>
         <div>
-            Degree <span>{education.degree}</span>
+            <span>{education.degree}</span>
         </div>
         <div>
             {education.field}
