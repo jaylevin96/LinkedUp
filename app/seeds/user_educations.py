@@ -116,22 +116,6 @@ def seed_educations():
         "fromDate": datetime.datetime(2014, 9, 1),
         "toDate": datetime.datetime(2018, 6, 1)
     },
-    {
-        "school": "Yale University",
-        "degree": "Master's Degree",
-        "userId": 8,
-        "field": "Computer Science",
-        "fromDate": datetime.datetime(2020, 9, 1),
-        "toDate": datetime.datetime(2022, 5, 1)
-    },
-    {
-        "school": "Princeton University",
-        "degree": "Bachelor's Degree",
-        "userId": 8,
-        "field": "Electrical Engineering",
-        "fromDate": datetime.datetime(2016, 9, 1),
-        "toDate": datetime.datetime(2020, 5, 1)
-    },
     ]:
         db.session.add(UserEducation(**education))
     db.session.commit()

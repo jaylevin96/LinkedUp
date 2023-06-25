@@ -60,14 +60,7 @@ def seed_experiences():
         "fromDate": datetime.datetime(2014, 10, 1),
         "toDate": datetime.datetime(2021, 6, 30)
     },
-    {
-        'userId': 8,
-        'experienceTitle': "Data Scientist",
-        "experienceDetails": "Analyzed large datasets for insights",
-        "company": "Data Analytics Inc.",
-        "fromDate": datetime.datetime(2019, 2, 1),
-        "toDate": datetime.datetime(2023, 1, 31)
-    },
+
 
     ]:
         db.session.add(UserExperience(**experience))
