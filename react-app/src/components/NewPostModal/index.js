@@ -48,6 +48,9 @@ export default function CreatePostModal({ user }) {
                     >
                     </textarea>
                     <div className="post-button-div">
+                        <button className="cancel-button" onClick={closeModal}
+                            style={{ backgroundColor: "gray", marginRight: "1em" }}
+                        >Cancel</button>
 
                         <button type="submit">Post</button>
                     </div>
