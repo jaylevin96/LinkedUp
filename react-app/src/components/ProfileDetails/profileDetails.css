@@ -15,7 +15,8 @@
   border-radius: 100%;
   border: 3pt solid white;
   width: 250px;
-  height: auto;
+  object-fit: cover;
+  height: 250px;
 }
 
 .profile-section-header {
@@ -58,12 +59,14 @@
   grid-template-columns: 1fr 1fr 1fr;
   /* column-gap: 1em; */
   row-gap: 1em;
+  text-align: center;
   /* margin-top: 1em; */
   padding: 1em;
 }
 
 .profile-skills-list {
-  word-break: break-all;
+  /* word-break: break-all; */
+  word-spacing: 100%;
   list-style: none;
   font-style: italic;
 }

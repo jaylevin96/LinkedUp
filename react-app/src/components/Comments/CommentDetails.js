@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import OpenModalButton from "../OpenModalButton";
 import EditCommentModal from '../EditCommentModal';
@@ -12,7 +12,7 @@ import DeleteCommentModal from '../DeleteCommentModal';
 export default function CommentDetails({ comment, user }) {
     const [showCommentOptions, setShowCommentOptions] = useState(false)
     const commentRef = useRef()
-
+    const history = useHistory()
     const closeMenu = (e) => {
 
 
@@ -32,14 +32,17 @@ export default function CommentDetails({ comment, user }) {
         <div className='comments-overview-container'>
             <div>
 
-                <img className="comments-profile-image" src={comment.UserInfo.profileImage}></img>
+                <img className="comments-profile-image"
+                    onClick={() => {
+                        history.push(`/profile/${comment.userId}`)
+                    }}
+                    src={comment.UserInfo.profileImage}></img>
             </div>
             <div className='comments-details-container' key={comment.id}>
                 <div className='comments-details-header'>
-                    <div>
-                        <div>
-                            {`${comment.UserInfo.firstname} ${comment.UserInfo.lastname}`}
-                        </div>
+                    <div className='comments-details-name'>
+                        <NavLink to={`/profile/${comment.userId}`}> {`${comment.UserInfo.firstname} ${comment.UserInfo.lastname}`}</NavLink>
+
                         <div>
                             {comment.UserInfo.title}
                         </div>
